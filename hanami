@@ -1,0 +1,19 @@
+startup_message off
+defscrollback 10000
+
+screen -t terminal
+
+screen -t server
+select 1
+stuff "bundle exec hanami server"
+
+screen -t tail
+select 2
+# stuff "tail -f log/development.log | grep -v \"rl_delayed_jobs\""
+
+screen -t console
+select 3
+stuff "bundle exec hanami console"
+
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
